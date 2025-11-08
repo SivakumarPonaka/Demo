@@ -4,14 +4,20 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
 
 jobs:
   say-hello:
-    runs-on: windows-latest  # ensures PowerShell is available
+    runs-on: ubuntu-latest  # Use Linux runner
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install PowerShell
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y powershell
 
       - name: Run PowerShell script
         shell: pwsh
