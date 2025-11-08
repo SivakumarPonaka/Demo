@@ -1,0 +1,19 @@
+name: PowerShell Hello Action
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # allows manual trigger from GitHub Actions tab
+
+jobs:
+  say-hello:
+    runs-on: windows-latest  # ensures PowerShell is available
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run PowerShell script
+        shell: pwsh
+        run: |
+          Write-Output "Hello, I'm learning GitHub Actions! It is exciting!"
